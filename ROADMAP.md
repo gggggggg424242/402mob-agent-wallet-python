@@ -1,6 +1,7 @@
 # 402Mob agent wallet roadmap
 
-Status: proposal, not shipped functionality. Comparison reviewed 2026-11-02 against
+Status: Phases 1–5 are proposals, not shipped functionality. Phase 0 records source
+publication and remaining release work. Comparison reviewed 2026-11-02 against
 the linked Openfort documentation and our Node 0.1.2 / Python 0.1.1 source.
 This is a documentation/source comparison, not a benchmark or audit of Openfort.
 
@@ -20,7 +21,7 @@ creation alone does not provide that exchange record or create buyer demand.
 | Dimension | Openfort's documented workflow | 402Mob today |
 | --- | --- | --- |
 | Bootstrap | Backend SDK account creation after project/API key and wallet-secret setup | EOA generated in the agent runtime; signature enrollment needs no provider account, existing wallet, operator token or gas |
-| Key handling | Backend wallet/signing service; broader backend documentation describes TEE-backed infrastructure | Private local files (unencrypted) or caller-supplied vault; Node also accepts a managed signer adapter |
+| Key handling | Backend wallet/signing service; operations require API credentials plus wallet-secret authorization | Private local files (unencrypted) or caller-supplied vault; Node also accepts a managed signer adapter |
 | Authorization | Account/project signing policies and policy evaluation API | Node checks exact Base USDC terms, expected payee and a per-purchase cap; no aggregate budget or general policy engine |
 | Policy boundary | Guide explicitly says backend EIP-7702 send is evaluated as `signEvmHash`; transaction restrictions need exact-call preflight | Purchase checks run before the client signs its authorization; another holder of the EOA key can bypass this client |
 | Gas | Separate fee sponsorship and EIP-7702 transaction flow; example uses Base Sepolia, chain 84532 | Enrollment is off-chain EIP-191; artifact x402 settlement uses a facilitator. Clients have no general transaction sponsorship; direct-transfer API flows need Base ETH |
@@ -37,6 +38,15 @@ Neither 402Mob's per-purchase cap nor its Work Ticket cap limits spending by oth
 software holding the same wallet key. A signed receipt is not proof of work quality.
 
 ## Phase 0 — reproducible independent clients
+
+Public source repositories are now available:
+
+- [Node wallet](https://github.com/gggggggg424242/402mob-agent-wallet): 5 standalone tests and 32 optional service-integration tests verified locally.
+- [Python wallet](https://github.com/gggggggg424242/402mob-agent-wallet-python): 14 standalone regression tests verified locally.
+
+Both include licenses and CI. Runtime files match npm 0.1.2 / PyPI 0.1.1; repository
+metadata and test harnesses are separate from the immutable registry artifacts.
+Cross-language protocol vectors and automated release provenance remain future work.
 
 Priority: first. Publish separate public Node/Python repositories with installable
 packages, licenses, tests, CI and clearly documented feature differences. Keep the
