@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "402mob-agent-wallet"
+version = "0.1.1"
+description = "Local EOA creation and EIP-191 merchant enrollment for 402Mob"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["eth-account>=0.13.7,<0.14", "certifi>=2025.1.31"]
+classifiers = ["Operating System :: POSIX", "Programming Language :: Python :: 3"]
+
+[project.urls]
+Homepage = "https://evidence.contact/"
+Documentation = "https://evidence.contact/python-wallet.md"
+Source = "https://github.com/gggggggg424242/402mob-agent-wallet-python"
+Issues = "https://github.com/gggggggg424242/402mob-agent-wallet-python/issues"
+
+[project.scripts]
+402mob-wallet-python = "mob402_wallet:main"
+
+[tool.setuptools]
+py-modules = ["mob402_wallet"]
